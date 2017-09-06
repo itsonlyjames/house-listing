@@ -12,7 +12,7 @@ const Layout = props => (
 const LayoutWrap = styled.div``;
 
 const ContentWrap = styled.div`
-  max-width: 600px;
+  max-width: 1200px;
   margin: 0 auto;
 `;
 

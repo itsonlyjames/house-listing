@@ -4,19 +4,35 @@ import styled from 'styled-components';
 const Card = props => (
   <CardEl>
     <Brand color={props.agency.brandingColors.primary}>
-      <Image src={props.agency.logo} />
+      <Logo src={props.agency.logo} />
     </Brand>
-    <Image src={props.image} className="house-image" />
+    <ImageWrapper>
+      <Image src={props.image} className="house-image" />
+      <Button onClick={props.onClick}>{props.saved ? 'Remove' : 'Save'}</Button>
+    </ImageWrapper>
     <h2>{Card}</h2>
     <p>{props.price}</p>
   </CardEl>
 )
 
+const Button = styled.button`
+  display: none;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: black;
+  color: white;
+`;
+
 const CardEl = styled.div`
   width: 100%;
-  padding: 25px;
   border: 1px solid gray;
   display: block;
+  border-radius: 25px;
+  position: relative;
+  &:hover ${Button} {
+    display: block;
+  }
 `;
 
 const Brand = styled.div`
@@ -24,9 +40,17 @@ const Brand = styled.div`
   background-color: ${props => props.color};
 `;
 
+const ImageWrapper = styled.div`
+  position: relative;
+`;
+
 const Image = styled.img`
   display: block;
   max-width: 100%;
+`;
+
+const Logo = Image.extend`
+  padding: 40px;
 `;
 
 export default Card;

@@ -1,13 +1,33 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { injectGlobal } from 'styled-components';
+import styled, { injectGlobal } from 'styled-components';
+
+import * as HouseActions from '../../actions/HouseActions';
 
 import Card from '../../components/Card';
 
 class App extends Component {
+  saveHouse(house) {
+    console.log(house);
+    const { dispatch } = this.props;
+
+    dispatch(HouseActions.saveHouse(house));
+
+  }
+
+  removeHouse(house) {
+    console.log('okay we removing');
+
+    const { dispatch } = this.props;
+
+    dispatch(HouseActions.removeHouse(house));
+  }
+
   render() {
     return (
-      <div>
+      <Split>
+      <SplitEl>
+        Results
         {this.props.houseListing.results.map((house, key) => (
           <Card
             key={key}
@@ -15,9 +35,25 @@ class App extends Component {
             id={house.id}
             price={house.price}
             agency={house.agency}
+            onClick={this.saveHouse.bind(this, house)}
           />
         ))}
-      </div>
+      </SplitEl>
+      <SplitEl>
+        {this.props.houseListing.saved >= 0 ? 'No Saved Properties' : 'Saved Properties'}
+        {this.props.houseListing.saved.map((house, key) => (
+          <Card
+            saved
+            key={key}
+            image={house.mainImage}
+            id={house.id}
+            price={house.price}
+            agency={house.agency}
+            onClick={this.removeHouse.bind(this, house)}
+          />
+        ))}
+      </SplitEl>
+      </Split>
     );
   }
 }
@@ -28,6 +64,19 @@ injectGlobal`
     box-sizing: border-box;
     font-family: Arial;
   }
+`;
+
+const Split = styled.div`
+  width: 100%;
+  display: inline-block;
+  display: flex;
+  flex-direction: row;
+`;
+
+const SplitEl = styled.div`
+  display: flex;
+  width: 50%;
+  flex-direction: column;
 `;
 
 export default connect(state => ({
