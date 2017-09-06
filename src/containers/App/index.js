@@ -23,33 +23,33 @@ class App extends Component {
   render() {
     return (
       <Split>
-      <SplitEl>
-        Results
-        {this.props.houseListing.results.map((house, key) => (
-          <Card
-            key={key}
-            image={house.mainImage}
-            id={house.id}
-            price={house.price}
-            agency={house.agency}
-            onClick={this.saveHouse.bind(this, house)}
-          />
-        ))}
-      </SplitEl>
-      <SplitEl>
-        {this.props.houseListing.saved >= 0 ? 'No Saved Properties' : 'Saved Properties'}
-        {this.props.houseListing.saved.map((house, key) => (
-          <Card
-            saved
-            key={key}
-            image={house.mainImage}
-            id={house.id}
-            price={house.price}
-            agency={house.agency}
-            onClick={this.removeHouse.bind(this, house)}
-          />
-        ))}
-      </SplitEl>
+        <SplitEl>
+          <h2>Results</h2>
+          {this.props.houseListing.results.map((house, key) => (
+            <Card
+              key={key}
+              image={house.mainImage}
+              id={house.id}
+              price={house.price}
+              agency={house.agency}
+              onClick={this.saveHouse.bind(this, house)}
+            />
+          ))}
+        </SplitEl>
+        <SplitEl>
+          <h2>{this.props.houseListing.saved >= 0 ? 'No Saved Properties' : 'Saved Properties'}</h2>
+          {this.props.houseListing.saved.map((house, key) => (
+            <Card
+              saved
+              key={key}
+              image={house.mainImage}
+              id={house.id}
+              price={house.price}
+              agency={house.agency}
+              onClick={this.removeHouse.bind(this, house)}
+            />
+          ))}
+        </SplitEl>
       </Split>
     );
   }
