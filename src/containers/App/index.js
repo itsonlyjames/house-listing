@@ -8,7 +8,6 @@ import Card from '../../components/Card';
 
 class App extends Component {
   saveHouse(house) {
-    console.log(house);
     const { dispatch } = this.props;
 
     dispatch(HouseActions.saveHouse(house));
@@ -16,8 +15,6 @@ class App extends Component {
   }
 
   removeHouse(house) {
-    console.log('okay we removing');
-
     const { dispatch } = this.props;
 
     dispatch(HouseActions.removeHouse(house));
@@ -76,6 +73,7 @@ const Split = styled.div`
 const SplitEl = styled.div`
   display: flex;
   width: 50%;
+  padding: 0 20px;
   flex-direction: column;
 `;
 

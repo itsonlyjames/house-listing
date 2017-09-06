@@ -58,6 +58,11 @@ const initialState = {
 export default function(state = initialState, action) {
   switch (action.type) {
     case SAVE_HOUSE:
+      if(state.saved.find(house => house.id === action.house.id)) {
+        return {
+          ...state
+        }
+      }
       return {
         ...state,
         saved: [...state.saved, action.house]

@@ -11,7 +11,7 @@ const Card = props => (
       <Button onClick={props.onClick}>{props.saved ? 'Remove' : 'Save'}</Button>
     </ImageWrapper>
     <h2>{Card}</h2>
-    <p>{props.price}</p>
+    <Price>{props.price}</Price>
   </CardEl>
 )
 
@@ -20,8 +20,12 @@ const Button = styled.button`
   position: absolute;
   bottom: 0;
   width: 100%;
-  background-color: black;
+  background-color: rgba(0, 0, 0, .8);
   color: white;
+  cursor: pointer;
+  border: 0;
+  padding: 10px 0;
+  font-size: 20px;
 `;
 
 const CardEl = styled.div`
@@ -30,6 +34,9 @@ const CardEl = styled.div`
   display: block;
   border-radius: 25px;
   position: relative;
+  overflow: hidden;
+  margin-bottom: 25px;
+
   &:hover ${Button} {
     display: block;
   }
@@ -51,6 +58,13 @@ const Image = styled.img`
 
 const Logo = Image.extend`
   padding: 40px;
+`;
+
+const Price = styled.p`
+  font-size: 25px;
+  margin: 0;
+  margin-bottom: 20px;
+  padding: 0 20px;
 `;
 
 export default Card;
