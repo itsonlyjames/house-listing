@@ -8,7 +8,7 @@ const Card = props => (
     </Brand>
     <ImageWrapper>
       <Image src={props.image} className="house-image" />
-      <Button onClick={props.onClick}>{props.saved ? 'Remove' : 'Save'}</Button>
+      <Button onClick={props.onClick}>{props.saved ? 'Remove property' : 'Save property'}</Button>
     </ImageWrapper>
     <h2>{Card}</h2>
     <Price>{props.price}</Price>
